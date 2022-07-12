@@ -1,10 +1,22 @@
+import {useEffect, useState} from "react";
 import Dropdown from "../dropdown/Dropdown";
 import "./Inputs.css";
 
-const Inputs = () => {
+const Inputs = ({setSearchBy}) => {
+  const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    setSearchBy(search);
+  }, [search]);
+
   return (
     <div className="inputs_container">
-      <input type="text" placeholder="Search for a country ..." />
+      <input
+        type="text"
+        placeholder="Search for a country ..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
       <Dropdown />
     </div>
   );
