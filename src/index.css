@@ -5,12 +5,35 @@
 }
 
 :root {
-  /* Light Mode Background */
   --body-bg: hsl(0, 0%, 98%);
   --header-bl: hsl(0, 0%, 52%);
+  --clr-whitesmoke: whitesmoke;
+  --clr-white: white;
 }
 
 body {
   background: var(--body-bg);
   font-family: "Lato", sans-serif;
+  background: url(./assets/world.jpg);
+  background-attachment: fixed;
+}
+
+::-webkit-scrollbar {
+  width: 0.7rem;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--clr-whitesmoke);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 0.2rem;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.loading {
+  text-align: center;
+  margin-top: 15rem;
+  color: var(--clr-white);
+  font-size: 3rem;
 }

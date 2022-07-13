@@ -8,29 +8,30 @@
   justify-content: space-between;
   align-items: center;
   padding: 0 0.5rem;
-  border-radius: 5px;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-  background-color: rgb(255, 255, 255);
+  background-color: var(--clr-white);
+  cursor: pointer;
+  user-select: none;
 }
 
 .filter_container img {
   width: 1.8rem;
-  cursor: pointer;
 }
 
 .list_container {
   margin-top: 0.5rem;
-  border-radius: 5px;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-  background-color: rgb(255, 255, 255);
   position: relative;
 }
 
 .list_container li {
   list-style: none;
   padding: 0.5rem;
+  background-color: var(--clr-white);
+  cursor: pointer;
 }
 
 .list_container li:hover {
-  background-color: silver;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: var(--clr-white);
 }

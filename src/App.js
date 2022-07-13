@@ -5,11 +5,14 @@ import axios from "axios";
 import Header from "./components/header/Header";
 import Inputs from "./components/inputs/Inputs";
 import Main from "./components/main/Main";
+import Details from "./components/details/Details";
 
 const App = () => {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
-  const [searchBy, setSearchBy] = useState("af");
+  const [continent, setContinent] = useState("");
+  const [searchBy, setSearchBy] = useState("");
+  const [resetSearch, setResetSearch] = useState(true);
 
   useEffect(() => {
     axios
@@ -18,23 +21,46 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    const selection = data.filter((country) =>
+    const cleanData = data.filter((country) =>
+      country.region.toLowerCase().includes(continent.toLowerCase())
+    );
+
+    const selectionByCountryName = cleanData.filter((country) =>
       country.name.toLowerCase().includes(searchBy.toLowerCase())
     );
-    setFilteredData(selection);
-  }, [searchBy, data]);
+    setFilteredData(selectionByCountryName);
+  }, [searchBy, data, continent]);
 
-  // console.log("IDE LOJ TE BAROM", filteredData[1]);
+  useEffect(() => {
+    const selectionByContinent = data.filter((country) =>
+      country.region.toLowerCase().includes(continent.toLowerCase())
+    );
+    setFilteredData(selectionByContinent);
+  }, [continent, data, resetSearch]);
+
+  const newSearch = () => {
+    setResetSearch(!resetSearch);
+  };
 
   return (
     <div>
       <Header />
-      <Inputs setSearchBy={setSearchBy} />
-      {/* {filteredData.length && <Main filteredData={filteredData} />} */}
+      {filteredData.length === 1 && (
+        <Details countryData={filteredData[0]} resetSearch={newSearch} />
+      )}
+      {filteredData.length !== 1 && (
+        <Inputs
+          setSearchBy={setSearchBy}
+          setContinent={setContinent}
+          continent={continent}
+          filteredData={filteredData}
+          newSearch={newSearch}
+        />
+      )}
       {data.length ? (
-        <Main filteredData={filteredData} />
+        <Main filteredData={filteredData} setFilteredData={setFilteredData} />
       ) : (
-        <h1>Loading ...</h1>
+        <h1 className="loading">Loading ...</h1>
       )}
     </div>
   );

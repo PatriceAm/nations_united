@@ -2,15 +2,27 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding: 1rem 2.5rem;
-  /* background: limegreen; */
-  padding-top: 2rem;
-  background-color: rgb(240, 240, 240);
+  padding: 2rem 2.5rem;
   max-height: 80px;
+}
+
+.inputs_container h2 {
+  padding-top: 0.5rem;
+  font-weight: 400;
+  background-clip: text;
+  color: var(--clr-whitesmoke);
+  font-size: clamp(1rem, 1.5vw, 2rem);
+}
+
+.inputs_container h2 span {
+  font-weight: 700;
+  font-size: clamp(1rem, 2vw, 2rem);
+  color: var(--clr-white);
 }
 
 .inputs_container input {
   background: url(../../assets/search.svg) no-repeat;
+  background-color: var(--clr-white);
   background-position: left 1rem bottom 50%;
   height: 3rem;
   width: 30rem;
@@ -27,4 +39,38 @@
 
 .inputs_container input:focus {
   outline: none;
+}
+
+@media (max-width: 1000px) {
+  .inputs_container {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 7rem;
+  }
+
+  .inputs_container input {
+    min-height: 3rem;
+    width: 70%;
+    margin-right: unset;
+    font-size: 1rem;
+  }
+
+  ::placeholder {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .inputs_container {
+    padding: 1rem 0;
+  }
+  .inputs_container input {
+    width: 90%;
+  }
+
+  .inputs_container h2,
+  .inputs_container h2 span {
+    color: unset;
+  }
 }
